@@ -1,29 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 
-# copy third column from
-# https://docs.google.com/spreadsheets/d/180JGMG8O13_R9VxSDLYDWGg0JSWa3Higy911RS-PeNk/edit#gid=0
-column = %w(
-http://www.aha.io/product/integrations/github
-https://apiary.io/
-https://biterg.io/
-
-
-
-https://codecov.io/
-
-
-
-
-
-
-
-
-
-
-https://www.quantifiedcode.com/
-)
-
 checks = [
   {
     title_terms: %w(terms privacy legal),
@@ -53,7 +30,9 @@ def contains?(doc, text)
   !search_case_insensitive(doc, text).empty?
 end
 
-column.each do |service_url|
+File.foreach('domains.txt') do |service_url|
+  service_url.strip!
+  next if service_url.empty?
   homepage_doc = Nokogiri::HTML(open(service_url))
   checks.each do |check|
     check[:title_terms].each do |title_term|
