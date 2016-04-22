@@ -21,6 +21,13 @@ module Legalese
       report_tos
     end
 
+    def self.print_key
+      puts "Key:\n"
+      puts '  green'.colorize(:green) + ' - pass'
+      puts '  magenta'.colorize(:magenta) + ' - soft fail'
+      puts '  red'.colorize(:red) + ' - hard fail'
+    end
+
     private
 
     def privacy_policy_message
