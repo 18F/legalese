@@ -7,7 +7,7 @@ File.foreach('domains.txt') do |service_url|
   puts service_url
 
   srvice = Legalese::Service.new(service_url)
-  puts "  privacy policy: #{srvice.has_privacy_policy?}"
+  puts "  privacy policy found: #{srvice.has_privacy_policy?}"
 
   tos_found = srvice.tos_pages.any?
   puts "  ToS found: #{tos_found}"
@@ -15,7 +15,7 @@ File.foreach('domains.txt') do |service_url|
     clauses = Legalese::Service::CLAUSE_TERMS.keys
     clauses.each do |clause|
       has_clause = srvice.contains_tos_clause?(clause)
-      puts "  ToS #{clause} clause: #{has_clause}"
+      puts "    #{clause} clause: #{has_clause}"
     end
   end
 end
