@@ -36,4 +36,26 @@ describe Legalese::Page do
       expect(page.contains_text?('birds')).to eq(false)
     end
   end
+
+  describe '#urls_for' do
+    it "matches exact text" do
+      page = page_with_body('<a href="http://foo.com">Cats and Dogs</h1>')
+      expect(page.urls_for('Cats')).to eq(['http://foo.com'])
+    end
+
+    it "matches case insensitively" do
+      page = page_with_body('<a href="http://foo.com">Cats and Dogs</h1>')
+      expect(page.urls_for('cats')).to eq(['http://foo.com'])
+    end
+
+    it "returns false for no matches" do
+      page = page_with_body('<a href="http://foo.com">Cats and Dogs</h1>')
+      expect(page.urls_for('birds')).to eq([])
+    end
+
+    it "returns absolute URLs" do
+      page = page_with_body('<a href="foo.html">Cats and Dogs</h1>')
+      expect(page.urls_for('Cats')).to eq(['http://example.com/foo.html'])
+    end
+  end
 end

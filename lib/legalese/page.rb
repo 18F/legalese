@@ -21,11 +21,6 @@ module Legalese
       search_case_insensitive(text).any?
     end
 
-    # Returns an array of anchor Elements.
-    def links_to(text)
-      search_case_insensitive(text, 'a')
-    end
-
     # Returns an Array of URLs as Strings.
     def urls_for(text)
       links_to(text).map do |anchor|
@@ -43,6 +38,11 @@ module Legalese
       # http://stackoverflow.com/a/3803222/358804
       doc.xpath("//#{tag}[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
     ,'#{text.downcase}')]")
+    end
+
+    # Returns an array of anchor Elements.
+    def links_to(text)
+      search_case_insensitive(text, 'a')
     end
   end
 end
