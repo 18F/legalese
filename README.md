@@ -1,6 +1,11 @@
 # Legalese [![Build Status](https://travis-ci.org/18F/legalese.svg?branch=master)](https://travis-ci.org/18F/legalese)
 
-Experimental checker for legal text that determines whether 18F can use a third-party service or not.
+Experimental checker for legal text that determines whether 18F can use a third-party service or not. Checks the following:
+
+* If the site has a Privacy Policy
+* If the site has a Terms of Service, and if it contains the following clauses:
+    * [Indemnification](http://www.startuplawtalk.com/what-is-indemnification/)
+    * [Governing law](http://www.contractstandards.com/clauses/governing-law)
 
 ## Usage
 
