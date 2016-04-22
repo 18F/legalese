@@ -1,5 +1,5 @@
 require 'set'
-require_relative 'page'
+require_relative 'root_page'
 
 module Legalese
   class Service
@@ -25,11 +25,11 @@ module Legalese
     end
 
     def homepage
-      @homepage ||= Page.new(url)
+      @homepage ||= RootPage.new(url)
     end
 
     def privacy_policy_url
-      homepage.urls_for('privacy').first
+      homepage.privacy_policy_urls.first
     end
 
     def has_privacy_policy?
@@ -37,15 +37,11 @@ module Legalese
     end
 
     def tos_urls
-      @tos_urls ||= %w(terms tos legal).flat_map do |title_term|
-        homepage.urls_for(title_term)
-      end.to_set
+      homepage.tos_urls
     end
 
     def tos_pages
-      @tos_pages ||= tos_urls.map do |tos_url|
-        Page.new(tos_url)
-      end
+      homepage.tos_pages
     end
 
     def contains_tos_term?(term)
