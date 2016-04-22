@@ -64,5 +64,9 @@ module Legalese
         contains_tos_term?(term)
       end
     end
+
+    def self.clauses
+      CLAUSE_TERMS.keys
+    end
   end
 end
