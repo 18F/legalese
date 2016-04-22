@@ -29,6 +29,10 @@ module Legalese
       homepage.tos_pages
     end
 
+    def has_tos?
+      homepage.tos_urls.any?
+    end
+
     def contains_tos_clause?(clause)
       tos_pages.any? do |page|
         page.contains_clause?(clause)
