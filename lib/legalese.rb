@@ -22,21 +22,25 @@ module Legalese
 
     def report_tos(srvice)
       msg = if srvice.has_tos?
-        srvice.tos_urls.first
+        srvice.tos_url
       else
         "not found"
       end
       puts "  ToS: #{msg}"
 
       if srvice.has_tos?
-        TosPage.clauses.each do |clause|
-          msg = if srvice.contains_tos_clause?(clause)
-            "found"
-          else
-            "not found"
-          end
-          puts "    #{clause} clause: #{msg}"
+        report_tos_clauses(srvice)
+      end
+    end
+
+    def report_tos_clauses(srvice)
+      TosPage.clauses.each do |clause|
+        msg = if srvice.contains_tos_clause?(clause)
+          "found"
+        else
+          "not found"
         end
+        puts "    #{clause} clause: #{msg}"
       end
     end
   end

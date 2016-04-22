@@ -21,20 +21,16 @@ module Legalese
       !!privacy_policy_url
     end
 
-    def tos_urls
-      homepage.tos_urls
-    end
-
-    def tos_pages
-      homepage.tos_pages
+    def tos_url
+      homepage.tos_urls.first
     end
 
     def has_tos?
-      homepage.tos_urls.any?
+      !!tos_url
     end
 
     def contains_tos_clause?(clause)
-      tos_pages.any? do |page|
+      homepage.tos_pages.any? do |page|
         page.contains_clause?(clause)
       end
     end
