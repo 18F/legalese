@@ -1,3 +1,4 @@
+require 'colorize'
 require_relative 'service'
 require_relative 'tos_page'
 
@@ -14,6 +15,7 @@ module Legalese
     end
 
     def run
+      puts ''
       puts url
       report_privacy_policy
       report_tos
@@ -23,9 +25,10 @@ module Legalese
 
     def privacy_policy_message
       if srvice.has_privacy_policy?
-        srvice.privacy_policy_pages.first.url
+        page = srvice.privacy_policy_pages.first
+        page.url.colorize(:green)
       else
-        "not found"
+        "not found".colorize(:red) + " (should be verified manually)"
       end
     end
 
@@ -35,9 +38,10 @@ module Legalese
 
     def tos_message
       if srvice.has_tos?
-        srvice.tos_pages.first.url
+        page = srvice.tos_pages.first
+        page.url.colorize(:green)
       else
-        "not found"
+        "not found".colorize(:red) + " (should be verified manually)"
       end
     end
 
@@ -50,9 +54,9 @@ module Legalese
 
     def tos_clause_message(clause)
       if srvice.contains_tos_clause?(clause)
-        "found"
+        "found".colorize(:magenta) + " (needs further investigation)"
       else
-        "not found"
+        "not found".colorize(:green)
       end
     end
 
