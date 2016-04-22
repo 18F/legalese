@@ -9,6 +9,20 @@ describe Legalese::Page do
     page
   end
 
+  describe "uniqueness" do
+    it "is == to another with the same URL" do
+      page1 = Legalese::Page.new('http://example.com')
+      page2 = Legalese::Page.new('http://example.com')
+      expect(page1 == page2).to eq(true)
+    end
+
+    it "is #eql? to another with the same URL" do
+      page1 = Legalese::Page.new('http://example.com')
+      page2 = Legalese::Page.new('http://example.com')
+      expect(page1.eql?(page2)).to eq(true)
+    end
+  end
+
   describe '#contains_text?' do
     it "matches exact text" do
       page = page_with_body('<h1>Cats and Dogs</h1>')

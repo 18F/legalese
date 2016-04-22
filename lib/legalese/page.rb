@@ -3,6 +3,8 @@ require 'open-uri'
 
 module Legalese
   class Page
+    include Comparable
+
     attr_reader :url
 
     def initialize(url)
@@ -28,6 +30,14 @@ module Legalese
         # make absolute
         URI.join(url, path).to_s
       end
+    end
+
+    def <=>(other)
+      url <=> other.url
+    end
+
+    def eql?(other)
+      url.eql?(other.url)
     end
 
     private
