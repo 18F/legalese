@@ -1,17 +1,6 @@
 require_relative '../lib/legalese/page'
 
 describe Legalese::Page do
-  def construct_html(body)
-    <<-HTML
-    <html>
-      <head></head>
-      <body>
-        #{body}
-      </body>
-    </html>
-    HTML
-  end
-
   def page_with_body(body)
     page = Legalese::Page.new('http://example.com')
     html = construct_html(body)
@@ -48,7 +37,7 @@ describe Legalese::Page do
       expect(page.urls_for('cats')).to eq(['http://foo.com'])
     end
 
-    it "returns false for no matches" do
+    it "returns empty Array for no matches" do
       page = page_with_body('<a href="http://foo.com">Cats and Dogs</h1>')
       expect(page.urls_for('birds')).to eq([])
     end

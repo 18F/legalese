@@ -18,7 +18,7 @@ module Legalese
     }
 
     def contains_clause?(clause)
-      terms = CLAUSE_TERMS[clause.to_sym]
+      terms = self.class.terms_for(clause)
       terms.any? do |term|
         contains_text?(term)
       end
@@ -26,6 +26,10 @@ module Legalese
 
     def self.clauses
       CLAUSE_TERMS.keys
+    end
+
+    def self.terms_for(clause)
+      CLAUSE_TERMS[clause.to_sym]
     end
   end
 end

@@ -94,3 +94,14 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def construct_html(body)
+  <<-HTML
+    <html>
+      <head></head>
+      <body>
+        #{body}
+      </body>
+    </html>
+  HTML
+end
