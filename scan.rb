@@ -1,8 +1,10 @@
 require_relative 'lib/legalese'
 
-File.foreach('domains.txt') do |url|
-  url.strip!
-  next if url.empty?
+urls = File.readlines('domains.txt')
+urls.map!(&:strip!)
+urls.reject!(&:empty?)
+urls.uniq!
 
+urls.each do |url|
   Legalese.scan(url)
 end
