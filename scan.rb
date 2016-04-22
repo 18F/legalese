@@ -103,9 +103,13 @@ File.foreach('domains.txt') do |service_url|
   srvice = Service.new(service_url)
   puts "  privacy policy: #{srvice.has_privacy_policy?}"
 
-  clauses = CLAUSE_TERMS.keys
-  clauses.each do |clause|
-    has_clause = srvice.contains_tos_clause?(clause)
-    puts "  ToS #{clause} clause: #{has_clause}"
+  tos_found = srvice.tos_pages.any?
+  puts "  ToS found: #{tos_found}"
+  if tos_found
+    clauses = CLAUSE_TERMS.keys
+    clauses.each do |clause|
+      has_clause = srvice.contains_tos_clause?(clause)
+      puts "  ToS #{clause} clause: #{has_clause}"
+    end
   end
 end
