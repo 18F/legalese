@@ -1,4 +1,4 @@
-# Legalese
+# Legalese [![Build Status](https://travis-ci.org/18F/legalese.svg?branch=master)](https://travis-ci.org/18F/legalese)
 
 Experimental checker for legal text that determines whether 18F can use a third-party service or not.
 
