@@ -9,16 +9,12 @@ module Legalese
       @url = url
     end
 
-    def doc
-      @doc ||= Nokogiri::HTML(open(url))
+    def body
+      open(url)
     end
 
-    # Returns an array of Elements.
-    def search_case_insensitive(text, tag='*')
-      # convert to lower case
-      # http://stackoverflow.com/a/3803222/358804
-      doc.xpath("//#{tag}[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
-    ,'#{text.downcase}')]")
+    def doc
+      @doc ||= Nokogiri::HTML(body)
     end
 
     def contains_text?(text)
@@ -37,6 +33,16 @@ module Legalese
         # make absolute
         URI.join(url, path).to_s
       end
+    end
+
+    private
+
+    # Returns an array of Elements.
+    def search_case_insensitive(text, tag='*')
+      # convert to lower case
+      # http://stackoverflow.com/a/3803222/358804
+      doc.xpath("//#{tag}[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
+    ,'#{text.downcase}')]")
     end
   end
 end
