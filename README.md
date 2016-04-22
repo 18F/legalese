@@ -11,6 +11,6 @@ Requires Ruby 1.9+.
 1. Run
 
     ```bash
-    gem install nokogiri
-    ruby scan.rb
+    bundle
+    bundle exec ruby scan.rb
     ```
