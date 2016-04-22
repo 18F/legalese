@@ -1,17 +1,26 @@
-require_relative 'legalese/service'
-require_relative 'legalese/tos_page'
+require_relative 'service'
+require_relative 'tos_page'
 
 module Legalese
-  class << self
-    def scan(url)
-      puts url
+  class Reporter
+    attr_reader :url
 
-      srvice = Service.new(url)
-      report_privacy_policy(srvice)
-      report_tos(srvice)
+    def initialize(url)
+      @url = url
     end
 
-    def report_privacy_policy(srvice)
+    def srvice
+      @srvice ||= Service.new(url)
+    end
+
+    def run
+      puts url
+
+      report_privacy_policy
+      report_tos
+    end
+
+    def report_privacy_policy
       msg = if srvice.has_privacy_policy?
         srvice.privacy_policy_pages.first.url
       else
@@ -20,7 +29,7 @@ module Legalese
       puts "  privacy policy: #{msg}"
     end
 
-    def report_tos(srvice)
+    def report_tos
       msg = if srvice.has_tos?
         srvice.tos_pages.first.url
       else

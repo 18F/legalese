@@ -10,7 +10,7 @@ module Legalese
     end
 
     def body
-      open(url)
+      @body ||= open(url)
     end
 
     def doc
