@@ -13,6 +13,7 @@ module Legalese
       @doc ||= Nokogiri::HTML(open(url))
     end
 
+    # Returns an array of Elements.
     def search_case_insensitive(text, tag='*')
       # convert to lower case
       # http://stackoverflow.com/a/3803222/358804
@@ -21,11 +22,25 @@ module Legalese
     end
 
     def contains_text?(text)
-      !search_case_insensitive(text).empty?
+      search_case_insensitive(text).any?
+    end
+
+    # Returns an array of anchor Elements.
+    def links_to(text)
+      search_case_insensitive(text, 'a')
+    end
+
+    # Returns an Array of URLs as Strings.
+    def urls_for(text)
+      links_to(text).map do |anchor|
+        path = anchor[:href]
+        # make absolute
+        URI.join(url, path).to_s
+      end
     end
 
     def contains_link?(text)
-      !search_case_insensitive(text, 'a').empty?
+      links_to(text).any?
     end
   end
 end

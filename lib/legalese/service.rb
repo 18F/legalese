@@ -32,17 +32,9 @@ module Legalese
       homepage.contains_link?('privacy')
     end
 
-    def tos_anchors
-      %w(terms tos legal).flat_map do |title_term|
-        homepage.search_case_insensitive(title_term, 'a')
-      end.to_set
-    end
-
     def tos_urls
-      tos_anchors.map do |anchor|
-        path = anchor[:href]
-        # make absolute
-        URI.join(url, path).to_s
+      %w(terms tos legal).flat_map do |title_term|
+        homepage.urls_for(title_term)
       end.to_set
     end
 
