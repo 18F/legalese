@@ -38,9 +38,5 @@ module Legalese
         URI.join(url, path).to_s
       end
     end
-
-    def contains_link?(text)
-      links_to(text).any?
-    end
   end
 end

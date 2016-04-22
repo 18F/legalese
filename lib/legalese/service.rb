@@ -28,12 +28,16 @@ module Legalese
       @homepage ||= Page.new(url)
     end
 
+    def privacy_policy_url
+      homepage.urls_for('privacy').first
+    end
+
     def has_privacy_policy?
-      homepage.contains_link?('privacy')
+      !!privacy_policy_url
     end
 
     def tos_urls
-      %w(terms tos legal).flat_map do |title_term|
+      @tos_urls ||= %w(terms tos legal).flat_map do |title_term|
         homepage.urls_for(title_term)
       end.to_set
     end
