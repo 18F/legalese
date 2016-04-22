@@ -1,4 +1,5 @@
 require_relative 'page'
+require_relative 'tos_page'
 
 module Legalese
   class RootPage < Page
@@ -14,7 +15,7 @@ module Legalese
 
     def tos_pages
       @tos_pages ||= tos_urls.map do |tos_url|
-        Page.new(tos_url)
+        TosPage.new(tos_url)
       end
     end
   end

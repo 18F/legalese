@@ -1,4 +1,5 @@
 require_relative 'legalese/service'
+require_relative 'legalese/tos_page'
 
 module Legalese
   class << self
@@ -30,7 +31,7 @@ module Legalese
       puts "  ToS: #{msg}"
 
       if tos_found
-        Service.clauses.each do |clause|
+        TosPage.clauses.each do |clause|
           msg = if srvice.contains_tos_clause?(clause)
             "found"
           else

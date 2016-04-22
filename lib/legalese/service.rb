@@ -3,21 +3,6 @@ require_relative 'root_page'
 
 module Legalese
   class Service
-    # looks for these terms in the legal pages
-    CLAUSE_TERMS = {
-      indemnity: [
-        'defend',
-        'hold harmless',
-        'indemnification',
-        'indemnify',
-        'indemnity'
-      ],
-      governing_law: [
-        'governing law',
-        'jurisdiction'
-      ]
-    }
-
     attr_reader :url
 
     def initialize(url)
@@ -44,21 +29,10 @@ module Legalese
       homepage.tos_pages
     end
 
-    def contains_tos_term?(term)
-      tos_pages.any? do |page|
-        page.contains_text?(term)
-      end
-    end
-
     def contains_tos_clause?(clause)
-      terms = CLAUSE_TERMS[clause.to_sym]
-      terms.any? do |term|
-        contains_tos_term?(term)
+      tos_pages.any? do |page|
+        page.contains_clause?(clause)
       end
-    end
-
-    def self.clauses
-      CLAUSE_TERMS.keys
     end
   end
 end
