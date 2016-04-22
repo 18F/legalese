@@ -13,7 +13,7 @@ module Legalese
 
     def report_privacy_policy(srvice)
       msg = if srvice.has_privacy_policy?
-        srvice.privacy_policy_url
+        srvice.privacy_policy_pages.first.url
       else
         "not found"
       end
@@ -22,7 +22,7 @@ module Legalese
 
     def report_tos(srvice)
       msg = if srvice.has_tos?
-        srvice.tos_url
+        srvice.tos_pages.first.url
       else
         "not found"
       end

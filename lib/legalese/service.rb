@@ -13,24 +13,24 @@ module Legalese
       @homepage ||= RootPage.new(url)
     end
 
-    def privacy_policy_url
-      homepage.privacy_policy_urls.first
+    def privacy_policy_pages
+      homepage.privacy_policy_pages
     end
 
     def has_privacy_policy?
-      !!privacy_policy_url
+      privacy_policy_pages.any?
     end
 
-    def tos_url
-      homepage.tos_urls.first
+    def tos_pages
+      homepage.tos_pages
     end
 
     def has_tos?
-      !!tos_url
+      tos_pages.any?
     end
 
     def contains_tos_clause?(clause)
-      homepage.tos_pages.any? do |page|
+      tos_pages.any? do |page|
         page.contains_clause?(clause)
       end
     end
