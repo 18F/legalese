@@ -7,6 +7,8 @@ Experimental checker for legal text that determines whether 18F can use a third-
     * [Governing law](http://www.contractstandards.com/clauses/governing-law)
     * [Indemnification](http://www.startuplawtalk.com/what-is-indemnification/)
 
+![screenshot](screenshot.png)
+
 ## Usage
 
 Requires Ruby 1.9+.
