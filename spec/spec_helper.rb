@@ -105,3 +105,11 @@ def construct_html(body)
     </html>
   HTML
 end
+
+def page_with_body(body)
+  page = Legalese::Page.new('http://example.com')
+  html = construct_html(body)
+  expect(page).to receive(:body).and_return(html)
+
+  page
+end

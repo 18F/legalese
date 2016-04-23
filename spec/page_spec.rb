@@ -1,14 +1,6 @@
 require_relative '../lib/legalese/page'
 
 describe Legalese::Page do
-  def page_with_body(body)
-    page = Legalese::Page.new('http://example.com')
-    html = construct_html(body)
-    expect(page).to receive(:body).and_return(html)
-
-    page
-  end
-
   describe "uniqueness" do
     it "is == to another with the same URL" do
       page1 = Legalese::Page.new('http://example.com')

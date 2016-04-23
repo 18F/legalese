@@ -31,7 +31,8 @@ module Legalese
 
     def contains_tos_clause?(clause)
       tos_pages.any? do |page|
-        page.contains_clause?(clause)
+        search = TosSearch.new(page)
+        search.contains_clause?(clause)
       end
     end
   end

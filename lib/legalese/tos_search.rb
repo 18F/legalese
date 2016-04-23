@@ -1,7 +1,5 @@
-require_relative 'page'
-
 module Legalese
-  class TosPage < Page
+  class TosSearch
     # looks for these terms
     CLAUSE_TERMS = {
       indemnity: [
@@ -17,10 +15,16 @@ module Legalese
       ]
     }
 
+    attr_reader :page
+
+    def initialize(page)
+      @page = page
+    end
+
     def contains_clause?(clause)
       terms = self.class.terms_for(clause)
       terms.any? do |term|
-        contains_text?(term)
+        page.contains_text?(term)
       end
     end
 
