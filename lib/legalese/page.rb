@@ -29,8 +29,10 @@ module Legalese
         path = anchor[:href]
         # make absolute
         URI.join(url, path).to_s
-      end
+      end.uniq
     end
+
+    ## comparison methods ##
 
     def <=>(other)
       url <=> other.url
@@ -39,6 +41,12 @@ module Legalese
     def eql?(other)
       url.eql?(other.url)
     end
+
+    def hash
+      url.hash
+    end
+
+    ########################
 
     private
 
