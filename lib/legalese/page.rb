@@ -1,11 +1,13 @@
+require 'compare_by'
 require 'nokogiri'
 require 'open-uri'
 
 module Legalese
   class Page
-    include Comparable
+    include CompareBy
 
     attr_reader :url
+    compare_by :url
 
     def initialize(url)
       @url = url
@@ -31,22 +33,6 @@ module Legalese
         URI.join(url, path).to_s
       end.uniq
     end
-
-    ## comparison methods ##
-
-    def <=>(other)
-      url <=> other.url
-    end
-
-    def eql?(other)
-      url.eql?(other.url)
-    end
-
-    def hash
-      url.hash
-    end
-
-    ########################
 
     private
 

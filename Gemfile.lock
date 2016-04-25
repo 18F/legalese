@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.7.7)
+    compare_by (1.0.0)
     diff-lcs (1.2.5)
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
@@ -25,6 +26,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize
+  compare_by
   nokogiri
   rspec
 
