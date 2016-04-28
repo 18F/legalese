@@ -1,5 +1,6 @@
 require 'set'
-require_relative 'root_page'
+require_relative 'page'
+require_relative 'search/legal_pages'
 
 module Legalese
   class Service
@@ -10,11 +11,15 @@ module Legalese
     end
 
     def homepage
-      @homepage ||= RootPage.new(url)
+      @homepage ||= Page.new(url)
+    end
+
+    def legal_pages_search
+      Legalese::Search::LegalPages.new(homepage)
     end
 
     def privacy_policy_pages
-      homepage.privacy_policy_pages
+      legal_pages_search.privacy_policy_pages
     end
 
     def has_privacy_policy?
@@ -22,7 +27,7 @@ module Legalese
     end
 
     def tos_pages
-      homepage.tos_pages
+      legal_pages_search.tos_pages
     end
 
     def has_tos?
