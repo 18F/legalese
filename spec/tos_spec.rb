@@ -1,9 +1,9 @@
-require_relative '../lib/legalese/tos_search'
+require_relative '../lib/legalese/search/tos'
 
-describe Legalese::TosSearch do
+describe Legalese::Search::Tos do
   def tos_with_body(body)
     page = page_with_body(body)
-    Legalese::TosSearch.new(page)
+    Legalese::Search::Tos.new(page)
   end
 
   describe '#contains_clause?' do
@@ -13,8 +13,8 @@ describe Legalese::TosSearch do
     end
 
     it "ignores other clauses" do
-      clauses = Legalese::TosSearch.clauses
-      other_term = Legalese::TosSearch.terms_for(clauses.last).first
+      clauses = Legalese::Search::Tos.clauses
+      other_term = Legalese::Search::Tos.terms_for(clauses.last).first
       page = tos_with_body("foo #{other_term} bar")
       expect(page.contains_clause?(clauses.first)).to eq(false)
     end

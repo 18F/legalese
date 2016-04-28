@@ -1,6 +1,6 @@
 require 'colorize'
 require_relative 'service'
-require_relative 'tos_search'
+require_relative 'search/tos'
 
 module Legalese
   class Reporter
@@ -68,7 +68,7 @@ module Legalese
     end
 
     def report_tos_clauses(srvice)
-      TosSearch.clauses.each do |clause|
+      Search::Tos.clauses.each do |clause|
         msg = tos_clause_message(clause)
         puts "    #{clause} clause: #{msg}"
       end

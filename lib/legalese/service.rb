@@ -1,6 +1,7 @@
 require 'set'
 require_relative 'page'
 require_relative 'search/legal_pages'
+require_relative 'search/tos'
 
 module Legalese
   class Service
@@ -15,7 +16,7 @@ module Legalese
     end
 
     def legal_pages_search
-      Legalese::Search::LegalPages.new(homepage)
+      Search::LegalPages.new(homepage)
     end
 
     def privacy_policy_pages
@@ -36,7 +37,7 @@ module Legalese
 
     def contains_tos_clause?(clause)
       tos_pages.any? do |page|
-        search = TosSearch.new(page)
+        search = Search::Tos.new(page)
         search.contains_clause?(clause)
       end
     end
