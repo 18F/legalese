@@ -8,6 +8,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     open_uri_redirections (0.2.1)
+    parallel (1.8.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -30,6 +31,7 @@ DEPENDENCIES
   compare_by
   nokogiri
   open_uri_redirections
+  parallel
   rspec
 
 BUNDLED WITH
