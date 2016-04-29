@@ -1,6 +1,7 @@
 require 'compare_by'
 require 'nokogiri'
 require 'open-uri'
+require 'open_uri_redirections'
 
 module Legalese
   class Page
@@ -14,7 +15,7 @@ module Legalese
     end
 
     def body
-      @body ||= open(url)
+      @body ||= open(url, allow_redirections: :all)
     end
 
     def doc
