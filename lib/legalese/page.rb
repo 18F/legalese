@@ -1,4 +1,3 @@
-
 require 'compare_by'
 require 'nokogiri'
 require 'open-uri'
