@@ -8,5 +8,9 @@ urls.uniq!
 
 Legalese::Reporter.print_key
 urls.each do |url|
-  Legalese::Reporter.new(url).run
+  begin
+    Legalese::Reporter.new(url).run
+  rescue OpenSSL::SSL::SSLError
+    puts "Failed with #{url} due to OpenSSL errors"
+  end
 end
