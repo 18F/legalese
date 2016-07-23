@@ -15,6 +15,7 @@ Requires Ruby 1.9+.
 
 1. Clone this repository and `cd` into the directory.
 1. Create a `urls.txt` file with a list of sites to check, one on each line. For example, 
+
     ```bash
 		http://www.aha.io/product/integrations/github
 		https://apiary.io/
@@ -45,7 +46,6 @@ Requires Ruby 1.9+.
 		https://waffle.io/
 		http://wercker.com/
 		https://www.zenhub.io/
-
     ```
 1. Run
 
