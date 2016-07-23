@@ -1,3 +1,4 @@
+
 require_relative 'lib/legalese/reporter'
 
 urls = File.readlines('urls.txt')
