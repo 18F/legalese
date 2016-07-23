@@ -1,3 +1,4 @@
+
 require 'compare_by'
 require 'nokogiri'
 require 'open-uri'
@@ -42,7 +43,7 @@ module Legalese
       # convert to lower case
       # http://stackoverflow.com/a/3803222/358804
       doc.xpath("//#{tag}[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')
-    ,'#{text.downcase}')]")
+        ,'#{text.downcase}')]")
     end
 
     # Returns an array of anchor Elements.

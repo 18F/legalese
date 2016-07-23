@@ -39,4 +39,6 @@ describe Legalese::Page do
       expect(page.urls_for('Cats')).to eq(['http://example.com/foo.html'])
     end
   end
+
+  
 end
