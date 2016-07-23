@@ -2,7 +2,7 @@
 require_relative 'lib/legalese/reporter'
 
 urls = File.readlines('urls.txt')
-urls.map!(&:strip!)
+urls.map!(&:strip)
 urls.reject!(&:empty?)
 urls.uniq!
 
